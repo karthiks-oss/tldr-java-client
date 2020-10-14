@@ -22,7 +22,12 @@ public class App {
             System.exit(1);
         }
 
-        Executor executor = new Executor(opts,jct);
-        executor.doRun();
+        Executor executor = new Executor(opts, jct);
+        try {
+            executor.doRun();
+        } catch (TldrException te) {
+            log.error("Error", te);
+            System.exit(2);
+        }
     }
 }

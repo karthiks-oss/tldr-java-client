@@ -10,6 +10,7 @@ public class TldrUsageFormatter extends DefaultUsageFormatter {
         super(commander);
     }
 
+
     /**
      * Appends the details of all parameters in the given order to the argument string builder, indenting every
      * line with indentCount-many indent.

@@ -27,4 +27,9 @@ public class Options {
     @Getter
     @Parameter(names = {"--clear-cache","-c"},description = "Clear local cache")
     private boolean clearCache;
+
+    @Getter
+    @Parameter(names = {"--platform","-p"},description = "Platform [windows, macos|osx, linux]")
+    private String platform;
+
 }
