@@ -10,19 +10,19 @@ public class App {
         Options opts = new Options();
         JCommander jct = JCommander.newBuilder()
                 .addObject(opts)
+                .programName("tldr")
                 .build();
+
+        jct.setUsageFormatter(new TldrUsageFormatter(jct));
 
         try {
             jct.parse(args);
         } catch (ParameterException pe) {
-            log.error("Invalid options: {}", pe.getMessage(), pe);
+            log.error("Invalid options: {}", pe.getMessage());
             System.exit(1);
         }
-        if (opts.isHelp()) {
-            jct.usage();
-            return;
-        }
 
-        log.info("{}", opts);
+        Executor executor = new Executor(opts,jct);
+        executor.doRun();
     }
 }
