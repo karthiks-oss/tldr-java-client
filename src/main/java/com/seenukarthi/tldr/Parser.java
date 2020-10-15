@@ -25,7 +25,7 @@ public class Parser {
                 log.info(colorize(string.substring(1).trim(), heading));
                 log.info("");
             } else if (string.startsWith("`")) {
-                log.info(parseExample(string.substring(1, string.lastIndexOf('`'))));
+                log.info(parseExample("    "+string.substring(1, string.lastIndexOf('`'))));
                 log.info("");
             } else if (string.startsWith(">")) {
                 log.info(colorize(string.substring(1).trim(), blockQuote));
@@ -46,7 +46,7 @@ public class Parser {
         for (String string : strings) {
             String s = colorize(string,code);
             s = s.replaceAll("\\{\\{","\u001B[34m");
-            s = s.replaceAll("}}",colorize("","\u001B[31m"));
+            s = s.replaceAll("}}","\u001B[31m");
             builder.append(s).append(" ");
         }
         return builder.toString();
