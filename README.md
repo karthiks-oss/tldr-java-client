@@ -24,4 +24,4 @@ Usage: tldr [options] SEARCH
 
 ## Download
 
-Download tldr from [relaeses](https://github.com/seenukarthi/tldr-java-client/releases)
+Download tldr from [releases](https://github.com/seenukarthi/tldr-java-client/releases)
