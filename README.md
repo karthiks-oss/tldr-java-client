@@ -20,3 +20,7 @@ Usage: tldr [options] SEARCH
 
 * Language Support
 * Caching support.
+
+## Download
+
+Download tldr from [relaeses](https://github.com/seenukarthi/tldr-java-client/releases)
