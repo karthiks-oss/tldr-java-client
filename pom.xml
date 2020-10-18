@@ -64,7 +64,7 @@
     </dependencies>
 
     <build>
-        <finalName>${product.name}-${project.version}</finalName>
+        <finalName>${product.name}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
