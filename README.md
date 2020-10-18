@@ -20,6 +20,7 @@ Usage: tldr [options] SEARCH
 
 * Language Support
 * Caching support.
+* Local file rendering.
 
 ## Download
 
