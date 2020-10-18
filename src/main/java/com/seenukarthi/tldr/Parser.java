@@ -37,7 +37,6 @@ public class Parser {
                 log.info(string);
             }
         }
-        log.info("");
     }
 
     private static String parseExample(String str) {

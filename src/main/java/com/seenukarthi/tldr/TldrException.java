@@ -1,6 +1,7 @@
 package com.seenukarthi.tldr;
 
-public class TldrException extends RuntimeException{
+@SuppressWarnings("unused")
+public class TldrException extends RuntimeException {
     public TldrException() {
         super();
     }

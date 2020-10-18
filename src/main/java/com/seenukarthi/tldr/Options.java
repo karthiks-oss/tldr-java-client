@@ -17,19 +17,19 @@ public class Options {
 
     @Getter
     @SuppressWarnings("FieldMayBeFinal")
-    @Parameter(names = {"--help","-h"}, description = "Print help information and exit",help = true)
+    @Parameter(names = {"--help", "-h"}, description = "Print help information and exit", help = true)
     private boolean help = false;
 
     @Getter
-    @Parameter(names = {"--update","-u"},description = "Update local database")
+    @Parameter(names = {"--update", "-u"}, description = "Update local database", hidden = true)
     private boolean updateCache;
 
     @Getter
-    @Parameter(names = {"--clear-cache","-c"},description = "Clear local cache")
+    @Parameter(names = {"--clear-cache", "-c"}, description = "Clear local cache", hidden = true)
     private boolean clearCache;
 
     @Getter
-    @Parameter(names = {"--platform","-p"},description = "Platform [windows, macos|osx, linux]")
+    @Parameter(names = {"--platform", "-p"}, description = "Platform [windows, macos|osx, linux]")
     private String platform;
 
 }

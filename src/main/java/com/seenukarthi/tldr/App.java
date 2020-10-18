@@ -25,8 +25,13 @@ public class App {
         Executor executor = new Executor(opts, jct);
         try {
             executor.doRun();
-        } catch (TldrException te) {
-            log.error("Error", te);
+        } catch (TldrCommandNotFoundException exception) {
+            log.info("");
+            log.info("This page doesn't exist yet!");
+            log.info("Submit new pages here: https://github.com/tldr-pages/tldr");
+            log.info("");
+        } catch (TldrException exception) {
+            log.error("Error", exception);
             System.exit(2);
         }
     }
