@@ -29,9 +29,9 @@ Usage: tldr [options] SEARCH
 
 ## Work in progress.
 
-* Language Support
-* Caching support.
-* Local file rendering.
+* [Language Support: #2](https://github.com/seenukarthi/tldr-java-client/issues/2)
+* [Caching support: #3](https://github.com/seenukarthi/tldr-java-client/issues/3).
+* [Local file rendering: #4](https://github.com/seenukarthi/tldr-java-client/issues/4).
 
 ## Download
 
