@@ -2,6 +2,17 @@
 
 This is a Java client for [tldr-pages](https://tldr.sh/)
 
+## Building
+
+### Prerequisite
+
+- Java Development Kit 1.8.
+- Maven 3.6.X.
+
+### Build.
+
+Run `mvn clean package` to build the project and extract `./target/tldr.zip` and add the `$EXTRACTED_FOLDER\bin` to the path.
+
 ## Usage
 
 ```
