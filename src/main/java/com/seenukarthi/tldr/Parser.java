@@ -14,29 +14,35 @@ public class Parser {
     private static final Attribute[] blockQuote = {YELLOW_TEXT(), ITALIC()};
     private static final Attribute[] code = {RED_TEXT()};
 
-    public static void parse(String fullDoc) {
-
+    public static String parseIntoString(String fullDoc){
         boolean toLeaveABlankLine = true;
+        StringBuilder builder = new StringBuilder();
 
         String[] strings = fullDoc.split("\n");
-        log.info("");
+        builder.append(System.lineSeparator());
         for (String string : strings) {
             if (string.startsWith("#")) {
-                log.info(colorize(string.substring(1).trim(), heading));
-                log.info("");
+                builder.append(colorize(string.substring(1).trim(), heading));
+                builder.append(System.lineSeparator());
+                builder.append(System.lineSeparator());
             } else if (string.startsWith("`")) {
-                log.info(parseExample("    " + string.substring(1, string.lastIndexOf('`'))));
-                log.info("");
+                builder.append(parseExample("    " + string.substring(1, string.lastIndexOf('`'))));
+                builder.append(System.lineSeparator());
+                builder.append(System.lineSeparator());
             } else if (string.startsWith(">")) {
-                log.info(colorize(string.substring(1).trim(), blockQuote));
+                builder.append(colorize(string.substring(1).trim(), blockQuote));
+                builder.append(System.lineSeparator());
             } else if (!StringUtils.isEmpty(string.trim())) {
                 if (toLeaveABlankLine) {
-                    log.info("");
+                    builder.append(System.lineSeparator());
                     toLeaveABlankLine = false;
                 }
-                log.info(string);
+                builder.append(string);
+                builder.append(System.lineSeparator());
             }
         }
+
+        return builder.toString();
     }
 
     private static String parseExample(String str) {

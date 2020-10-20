@@ -37,9 +37,8 @@ public class Executor {
             jct.usage();
             return;
         }
-
         try {
-            Parser.parse(getContentForTheCommand(this.options.getCommand()));
+            log.info(Parser.parseIntoString(getContentForTheCommand(this.options.getCommand())));
         } catch (TldrCommandNotFoundException e) {
             throw e;
         } catch (Exception e) {
