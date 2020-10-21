@@ -1,20 +1,18 @@
 package com.seenukarthi.tldr;
 
-import com.diogonunes.jcolor.Attribute;
+
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
-import static com.diogonunes.jcolor.Attribute.*;
-import static com.diogonunes.jcolor.Ansi.*;
+import static com.seenukarthi.tldr.AnsiColor.*;
 
 @Slf4j
 public class Parser {
 
-    private static final Attribute[] heading = {WHITE_TEXT(), BOLD()};
-    private static final Attribute[] blockQuote = {YELLOW_TEXT(), ITALIC()};
-    private static final Attribute[] code = {RED_TEXT()};
+    private static final String TOKEN_REGEX = "\\{\\{(.*?)}}";
+    private static final String INLINE_CODE_REGEX = "`(.*?)`";
 
-    public static String parseIntoString(String fullDoc){
+    public static String parseIntoString(String fullDoc) {
         boolean toLeaveABlankLine = true;
         StringBuilder builder = new StringBuilder();
 
@@ -22,22 +20,27 @@ public class Parser {
         builder.append(System.lineSeparator());
         for (String string : strings) {
             if (string.startsWith("#")) {
-                builder.append(colorize(string.substring(1).trim(), heading));
-                builder.append(System.lineSeparator());
-                builder.append(System.lineSeparator());
+                builder.append(WHITE).append(HIGH_INTENSITY)
+                        .append(string.substring(1).trim())
+                        .append(RESET)
+                        .append(System.lineSeparator())
+                        .append(System.lineSeparator());
             } else if (string.startsWith("`")) {
-                builder.append(parseExample("    " + string.substring(1, string.lastIndexOf('`'))));
-                builder.append(System.lineSeparator());
-                builder.append(System.lineSeparator());
+                builder.append(parseExample("    " + string.substring(1, string.lastIndexOf('`'))))
+                        .append(RESET)
+                        .append(System.lineSeparator())
+                        .append(System.lineSeparator());
             } else if (string.startsWith(">")) {
-                builder.append(colorize(string.substring(1).trim(), blockQuote));
-                builder.append(System.lineSeparator());
+                builder.append(YELLOW).append(ITALIC)
+                        .append(string.substring(1).trim())
+                        .append(RESET)
+                        .append(System.lineSeparator());
             } else if (!StringUtils.isEmpty(string.trim())) {
                 if (toLeaveABlankLine) {
                     builder.append(System.lineSeparator());
                     toLeaveABlankLine = false;
                 }
-                builder.append(string);
+                builder.append(parseDesc(string));
                 builder.append(System.lineSeparator());
             }
         }
@@ -46,15 +49,10 @@ public class Parser {
     }
 
     private static String parseExample(String str) {
-        String[] strings = str.split("\\s");
-        StringBuilder builder = new StringBuilder();
-        for (String string : strings) {
-            String s = colorize(string, code);
-            s = s.replaceAll("\\{\\{", "\u001B[34m");
-            s = s.replaceAll("}}", "\u001B[31m");
-            builder.append(s).append(" ");
-        }
-        return builder.toString();
+        return RED + str.replaceAll(TOKEN_REGEX, BLUE + "$1" + RED);
     }
 
+    private static String parseDesc(String str) {
+        return str.replaceAll(INLINE_CODE_REGEX, RED + "$1" + RESET);
+    }
 }
