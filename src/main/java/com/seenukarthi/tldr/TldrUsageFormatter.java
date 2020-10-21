@@ -15,9 +15,9 @@ public class TldrUsageFormatter extends DefaultUsageFormatter {
      * Appends the details of all parameters in the given order to the argument string builder, indenting every
      * line with indentCount-many indent.
      *
-     * @param out the builder to append to
-     * @param indentCount the amount of indentation to apply
-     * @param indent the indentation
+     * @param out              the builder to append to
+     * @param indentCount      the amount of indentation to apply
+     * @param indent           the indentation
      * @param sortedParameters the parameters to append to the builder
      */
     public void appendAllParametersDetails(StringBuilder out, int indentCount, String indent,
@@ -57,7 +57,6 @@ public class TldrUsageFormatter extends DefaultUsageFormatter {
             Class<?> type = pd.getParameterized().getType();
 
 
-
             if (def != null && !pd.isHelp() && !"boolean".equals(type.getName())) {
                 String displayedDef = Strings.isStringEmpty(def.toString()) ? "<empty string>" : def.toString();
                 String defaultText = "Default: " + (parameter.password() ? "********" : displayedDef);
@@ -72,7 +71,7 @@ public class TldrUsageFormatter extends DefaultUsageFormatter {
 
 
             if (type.isEnum()) {
-                String valueList = EnumSet.allOf((Class<? extends Enum>) type).toString();
+                @SuppressWarnings({"unchecked", "rawtypes"}) String valueList = EnumSet.allOf((Class<? extends Enum>) type).toString();
                 String possibleValues = "Possible Values: " + valueList;
 
                 // Prevent duplicate values list, since it is set as 'Options: [values]' if the description
