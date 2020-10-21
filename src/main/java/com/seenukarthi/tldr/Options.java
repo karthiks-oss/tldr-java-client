@@ -3,6 +3,8 @@ package com.seenukarthi.tldr;
 import com.beust.jcommander.Parameter;
 import lombok.Getter;
 
+import java.io.File;
+
 
 public class Options {
 
@@ -32,4 +34,7 @@ public class Options {
     @Parameter(names = {"--platform", "-p"}, description = "Platform [windows, macos|osx, linux]")
     private String platform;
 
+    @Getter
+    @Parameter(names = {"--render", "-r"}, description = "Render local file")
+    private File localFile;
 }

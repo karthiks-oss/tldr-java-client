@@ -26,12 +26,12 @@ public class App {
         try {
             executor.doRun();
         } catch (TldrCommandNotFoundException exception) {
-            log.info("");
-            log.info("This page doesn't exist yet!");
-            log.info("Submit new pages here: https://github.com/tldr-pages/tldr");
-            log.info("");
+            log.info(AnsiColor.RED);
+            log.info("This page doesn't exist yet!{}",System.lineSeparator());
+            log.info("Submit new pages here: https://github.com/tldr-pages/tldr{}",System.lineSeparator());
+            log.info(AnsiColor.RESET);
         } catch (TldrException exception) {
-            log.error("Error", exception);
+            log.error("Error: {}{}{}",AnsiColor.RED,exception.getMessage(),AnsiColor.RESET);
             System.exit(2);
         }
     }
